@@ -28,7 +28,7 @@ type cajasProps = {
 }
 
 function Caja({color}: cajasProps){
-    const [activo, setActivo] = useState(false);
+    const [activo, setActivo] = useState(true);
     return(
         <>
             <Pressable onPress={() => setActivo(!activo)}>
@@ -36,7 +36,7 @@ function Caja({color}: cajasProps){
                     {   
                         [
                             style.tamanio, 
-                            activo ? style.blanco : style[color]
+                            activo ? style[color] : style.blanco
                         ]
                     }>
                 </View>
