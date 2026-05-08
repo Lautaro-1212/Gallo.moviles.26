@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-native';
 
 export default function App() {
   const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
   
+  const style = StyleSheet.create({
+    none: {display:'none'},
+
+    flex: {display:'flex'}
+  })
+
   useEffect(() => {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then(res => res.json())
