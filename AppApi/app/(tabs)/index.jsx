@@ -4,6 +4,7 @@ import { View, Text, FlatList, ActivityIndicator, StyleSheet } from 'react-nativ
 export default function App() {
   const [usuarios, setUsuarios] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [mostrar, setMostrar] = useState(false);
   
   const style = StyleSheet.create({
     none: {display:'none'},
@@ -17,6 +18,7 @@ export default function App() {
       .then(json => {
         setUsuarios(json);
         setLoading(false);
+        setMostrar(true);
       })
       .catch(error => {
         console.error('Error al obtener los datos', error)
@@ -28,7 +30,7 @@ export default function App() {
     return <ActivityIndicator size="large" color="green" />;
   }
 
-  function Lista({mostrar: CajasProps}){
+  function Lista(){
     return (
       <View style={{ flex: 1, padding: 20}}>
         <Text style={{ fontSize: 20, fontWeight: 'bold', marginBottom: 10, color:'white' }}>
@@ -59,7 +61,17 @@ export default function App() {
     );
   }
 
+  function Mensaje(){
+    return(
+      <View style={{flex:1, justifyContent:'center', alignItems:'center'}}>
+        <Text style={{color:'red'}}>No se pudo mostrar a los usuarios</Text>
+      </View>
+    );  
+  }
+
   return (
-    <Lista />
+    <>
+      {mostrar ? <Lista/> : <Mensaje/>}
+    </>
   );
 }
