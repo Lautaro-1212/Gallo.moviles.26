@@ -24,10 +24,11 @@ const style = StyleSheet.create({
 })
 
 type cajasProps = {
-    color: 'verde' | 'azul' | 'rojo'
+    color: 'verde' | 'azul' | 'rojo',
+    apagado: 'verde' | 'azul' | 'rojo'
 }
 
-function Caja({color}: cajasProps){
+function Caja({color, apagado}: cajasProps){
     const [activo, setActivo] = useState(true);
     return(
         <>
@@ -36,7 +37,7 @@ function Caja({color}: cajasProps){
                     {   
                         [
                             style.tamanio, 
-                            activo ? style[color] : style.blanco
+                            activo ? style[color] : style[apagado]
                         ]
                     }>
                 </View>
@@ -48,9 +49,9 @@ function Caja({color}: cajasProps){
 export default function App(){
     return(
         <View style={style.container}>
-            <Caja color="verde"/>
-            <Caja color="rojo"/>
-            <Caja color="azul"/>
+            <Caja color="verde" apagado='azul'/>
+            <Caja color="rojo" apagado='azul'/>
+            <Caja color="azul" apagado='verde'/>
         </View>
     );
 }
