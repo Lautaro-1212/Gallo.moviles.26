@@ -1,17 +1,20 @@
 import { useState } from 'react';
-import { Pressable, StyleSheet, View } from 'react-native';
+import { Platform, Pressable, ScrollView, StyleSheet, View } from 'react-native';
 
 const style = StyleSheet.create({
     container:{
         flex:1,
-        flexDirection:'row',
         justifyContent:'space-around',
-        alignItems:'center'
+        flexDirection: Platform.OS === 'web' ? 'row' : 'column',
+        alignItems:'center',
+        marginTop:Platform.OS === 'web' ? 300 : 200,
+        marginBottom: Platform.OS === 'web' ? 0 : 100
     },
 
     tamanio:{    
         width:200,
         height:200,
+        marginBottom: Platform.OS === 'web' ? 0 : 200
     },
 
     verde: {backgroundColor:'green'},
@@ -48,10 +51,12 @@ function Caja({color, apagado}: cajasProps){
 
 export default function App(){
     return(
-        <View style={style.container}>
-            <Caja color="verde" apagado='azul'/>
-            <Caja color="rojo" apagado='azul'/>
-            <Caja color="azul" apagado='verde'/>
-        </View>
+        <ScrollView>
+            <View style={style.container}>
+                <Caja color="verde" apagado='azul'/>
+                <Caja color="rojo" apagado='azul'/>
+                <Caja color="azul" apagado='verde'/>
+            </View>
+        </ScrollView>
     );
 }
