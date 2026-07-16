@@ -8,8 +8,16 @@ export default function InicioScreen({ navigation }) {
       stock:15,
       categoria:'Camping'
     }
-  return (
+
+  return (  
     <View style={styles.container}>
+      <View style={{ width: "100%",alignItems: "center"}}>
+        <Button
+        title="Aerca de"
+        onPress={() => navigation.navigate("AcercaDe")}
+        />
+      </View>
+
       <Text style={styles.titulo}>Todos nuestros productos</Text>
       
       <View>
